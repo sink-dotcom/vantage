@@ -5,7 +5,6 @@ import {
   Clock,
   FileText,
   MessageSquare,
-  Plus,
   Target,
   TrendingUp,
   UserPlus,
