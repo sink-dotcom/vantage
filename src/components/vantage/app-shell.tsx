@@ -70,8 +70,24 @@ export function AppShell({
         </nav>
 
         <div className="mt-auto hidden rounded-lg border border-sidebar-border bg-sidebar-accent/40 p-3 lg:block">
-          <p className="text-xs font-semibold text-sidebar-accent-foreground">7.5 hours</p>
-          <p className="mt-1 text-xs text-sidebar-muted">5 clients · 2 open slots</p>
+          <p className="text-[10px] font-bold uppercase tracking-wide text-sidebar-muted">Viewing as</p>
+          <div className="mt-2 grid grid-cols-2 gap-1 rounded-md bg-sidebar p-1">
+            {(["coach", "coachee"] as const).map((option) => (
+              <button
+                key={option}
+                type="button"
+                onClick={() => setRole(option)}
+                className={cn(
+                  "rounded px-2 py-1 text-[11px] font-semibold capitalize transition-colors",
+                  role === option
+                    ? "bg-sidebar-primary text-sidebar-primary-foreground"
+                    : "text-sidebar-muted hover:text-sidebar-accent-foreground",
+                )}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
         </div>
       </aside>
 
