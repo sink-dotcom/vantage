@@ -3,6 +3,7 @@ import {
   CalendarDays,
   LayoutDashboard,
   Search,
+  Sprout,
   Target,
   Users,
   Plus,
@@ -11,13 +12,16 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useRole } from "@/lib/use-role";
 
-const nav = [
+const coachNav = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
   { to: "/clients", label: "Clients", icon: Users },
   { to: "/sessions", label: "Sessions", icon: CalendarDays },
   { to: "/goals", label: "Goals", icon: Target },
 ] as const;
+
+const coacheeNav = [{ to: "/coachee", label: "My journey", icon: Sprout }] as const;
 
 export function AppShell({
   title,
