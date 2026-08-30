@@ -241,3 +241,44 @@
   background: color-mix(in oklab, currentColor 72%, var(--color-card));
   border: 2px solid color-mix(in oklab, currentColor 72%, var(--color-foreground));
 }
+
+/* Onboarding tour popover (driver.js) */
+.driver-popover.vantage-tour {
+  background: var(--color-popover);
+  color: var(--color-popover-foreground);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lift);
+  font-family: var(--font-sans);
+}
+
+.driver-popover.vantage-tour .driver-popover-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+}
+
+.driver-popover.vantage-tour .driver-popover-description {
+  color: var(--color-muted-foreground);
+  font-size: 0.8rem;
+}
+
+.driver-popover.vantage-tour .driver-popover-navigation-btns button {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border-radius: var(--radius-sm);
+  border: none;
+  text-shadow: none;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+}
+
+.driver-popover.vantage-tour .driver-popover-progress-text {
+  color: var(--color-muted-foreground);
+  font-size: 0.7rem;
+}
+
+.driver-popover.vantage-tour .driver-popover-arrow-side-left { border-left-color: var(--color-popover); }
+.driver-popover.vantage-tour .driver-popover-arrow-side-right { border-right-color: var(--color-popover); }
+.driver-popover.vantage-tour .driver-popover-arrow-side-top { border-top-color: var(--color-popover); }
+.driver-popover.vantage-tour .driver-popover-arrow-side-bottom { border-bottom-color: var(--color-popover); }

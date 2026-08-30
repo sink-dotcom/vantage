@@ -7,7 +7,6 @@ import {
   MessageSquare,
   Target,
   TrendingUp,
-  UserPlus,
   Users,
 } from "lucide-react";
 
@@ -21,6 +20,8 @@ import {
   Sparkline,
   StatusPill,
 } from "@/components/vantage/primitives";
+import { CoachingNudge } from "@/components/vantage/coaching-nudge";
+import { QuickActions } from "@/components/vantage/quick-actions";
 import { activity, clients, getClient, goals, isRising, practiceStats, sessions } from "@/lib/vantage-data";
 
 export const Route = createFileRoute("/")({
@@ -46,7 +47,7 @@ function Dashboard() {
   return (
     <AppShell title="Good afternoon, Elena" subtitle="Sunday, 30 August · 3 sessions left · 2 need attention">
       <div className="grid gap-3 xl:grid-cols-12">
-        <Panel className="overflow-hidden bg-secondary xl:col-span-8">
+        <Panel id="tour-progress" className="flex flex-col overflow-hidden bg-card xl:col-span-8">
           <header className="flex items-start justify-between px-5 pt-4">
             <div>
               <Eyebrow className="text-foreground/60">Programme</Eyebrow>
@@ -55,42 +56,15 @@ function Dashboard() {
             </div>
             <Link to="/clients" aria-label="Explore clients"><ArrowUpRight className="size-4" /></Link>
           </header>
-          <div className="px-4 pb-1"><ProgressBubbleMap clients={clients} /></div>
+          <div className="flex flex-1 items-center px-4 pb-2 pt-2"><div className="w-full"><ProgressBubbleMap clients={clients} /></div></div>
         </Panel>
 
-        <section className="grid grid-cols-2 gap-3 xl:col-span-4 xl:grid-cols-1" aria-label="Quick actions">
-          <Link to="/clients" className="group">
-            <Panel className="min-h-[4.5rem] bg-leaf p-3 transition-transform duration-200 hover:-translate-y-px xl:min-h-0 xl:flex-1">
-              <div className="flex items-center gap-3">
-                <span className="grid size-9 place-items-center rounded-full bg-foreground/10">
-                  <UserPlus className="size-4" strokeWidth={1.8} />
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm font-bold">Add client</p>
-                  <p className="text-[10px] text-foreground/60">Start an intake</p>
-                </div>
-                <ArrowUpRight className="size-4 opacity-60 transition-opacity group-hover:opacity-100" />
-              </div>
-            </Panel>
-          </Link>
+        <div className="flex flex-col gap-3 xl:col-span-4">
+          <QuickActions />
+          <CoachingNudge />
+        </div>
 
-          <Link to="/clients" className="group">
-            <Panel className="min-h-[4.5rem] bg-sky p-3 transition-transform duration-200 hover:-translate-y-px xl:min-h-0 xl:flex-1">
-              <div className="flex items-center gap-3">
-                <span className="grid size-9 place-items-center rounded-full bg-foreground/10">
-                  <FileText className="size-4" strokeWidth={1.8} />
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm font-bold">Log note</p>
-                  <p className="text-[10px] text-foreground/60">Capture a session insight</p>
-                </div>
-                <ArrowUpRight className="size-4 opacity-60 transition-opacity group-hover:opacity-100" />
-              </div>
-            </Panel>
-          </Link>
-        </section>
-
-        <Panel className="p-4 xl:col-span-4">
+        <Panel id="tour-upnext" className="p-4 xl:col-span-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2"><Clock className="size-4" /><h2 className="text-sm font-bold">Up next</h2></div>
             <Link to="/sessions" aria-label="View all sessions"><ArrowUpRight className="size-4" /></Link>
@@ -114,7 +88,7 @@ function Dashboard() {
           <Link to="/sessions" className="mt-3 flex items-center justify-center rounded-md bg-primary py-2 text-xs font-bold text-primary-foreground">Open calendar</Link>
         </Panel>
 
-        <Panel className="overflow-hidden xl:col-span-8">
+        <Panel id="tour-roster" className="overflow-hidden xl:col-span-8">
           <header className="flex items-center justify-between border-b border-border px-4 py-3">
             <div className="flex items-center gap-2"><Users className="size-4" /><h2 className="text-sm font-bold">Client roster</h2></div>
             <Link to="/clients" className="text-xs font-bold">View all</Link>

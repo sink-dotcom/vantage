@@ -3,6 +3,7 @@ import {
   CalendarDays,
   LayoutDashboard,
   Search,
+  Sprout,
   Target,
   Users,
   Plus,
@@ -11,13 +12,16 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useRole } from "@/lib/use-role";
 
-const nav = [
+const coachNav = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
   { to: "/clients", label: "Clients", icon: Users },
   { to: "/sessions", label: "Sessions", icon: CalendarDays },
   { to: "/goals", label: "Goals", icon: Target },
 ] as const;
+
+const coacheeNav = [{ to: "/coachee", label: "My journey", icon: Sprout }] as const;
 
 export function AppShell({
   title,
@@ -31,6 +35,8 @@ export function AppShell({
   children: React.ReactNode;
 }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const { role, setRole } = useRole();
+  const nav = role === "coachee" ? coacheeNav : coachNav;
 
   return (
     <div className="min-h-screen bg-background lg:flex">
@@ -64,8 +70,24 @@ export function AppShell({
         </nav>
 
         <div className="mt-auto hidden rounded-lg border border-sidebar-border bg-sidebar-accent/40 p-3 lg:block">
-          <p className="text-xs font-semibold text-sidebar-accent-foreground">7.5 hours</p>
-          <p className="mt-1 text-xs text-sidebar-muted">5 clients · 2 open slots</p>
+          <p className="text-[10px] font-bold uppercase tracking-wide text-sidebar-muted">Viewing as</p>
+          <div className="mt-2 grid grid-cols-2 gap-1 rounded-md bg-sidebar p-1">
+            {(["coach", "coachee"] as const).map((option) => (
+              <button
+                key={option}
+                type="button"
+                onClick={() => setRole(option)}
+                className={cn(
+                  "rounded px-2 py-1 text-[11px] font-semibold capitalize transition-colors",
+                  role === option
+                    ? "bg-sidebar-primary text-sidebar-primary-foreground"
+                    : "text-sidebar-muted hover:text-sidebar-accent-foreground",
+                )}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
         </div>
       </aside>
 
@@ -77,16 +99,19 @@ export function AppShell({
               <p className="truncate text-sm text-muted-foreground">{subtitle}</p>
             ) : null}
           </div>
-          <div className="hidden items-center gap-2 rounded-md border border-border bg-card/70 px-3 py-1.5 text-sm text-muted-foreground backdrop-blur-md md:flex">
-            <Search className="size-3.5" />
-            <span className="pr-6">Search clients…</span>
-            <kbd className="rounded border border-border px-1 text-[10px]">⌘K</kbd>
-          </div>
-          {actions ?? (
-            <Button className="surface-accent shadow-lift transition-transform hover:-translate-y-px hover:bg-accent">
-              <Plus className="size-4" /> New session
-            </Button>
-          )}
+          {role === "coach" ? (
+            <div className="hidden items-center gap-2 rounded-md border border-border bg-card/70 px-3 py-1.5 text-sm text-muted-foreground backdrop-blur-md md:flex">
+              <Search className="size-3.5" />
+              <span className="pr-6">Search clients…</span>
+              <kbd className="rounded border border-border px-1 text-[10px]">⌘K</kbd>
+            </div>
+          ) : null}
+          {actions ??
+            (role === "coach" ? (
+              <Button className="surface-accent shadow-lift transition-transform hover:-translate-y-px hover:bg-accent">
+                <Plus className="size-4" /> New session
+              </Button>
+            ) : null)}
           <Button variant="outline" size="icon" aria-label="Notifications" className="bg-card/70 backdrop-blur-md">
             <Bell className="size-4" />
           </Button>
