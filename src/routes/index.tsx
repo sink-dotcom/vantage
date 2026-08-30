@@ -58,37 +58,10 @@ function Dashboard() {
           <div className="px-4 pb-1"><ProgressBubbleMap clients={clients} /></div>
         </Panel>
 
-        <section className="grid grid-cols-2 gap-3 xl:col-span-4 xl:grid-cols-1" aria-label="Quick actions">
-          <Link to="/clients" className="group">
-            <Panel className="min-h-[4.5rem] bg-leaf p-3 transition-transform duration-200 hover:-translate-y-px xl:min-h-0 xl:flex-1">
-              <div className="flex items-center gap-3">
-                <span className="grid size-9 place-items-center rounded-full bg-foreground/10">
-                  <UserPlus className="size-4" strokeWidth={1.8} />
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm font-bold">Add client</p>
-                  <p className="text-[10px] text-foreground/60">Start an intake</p>
-                </div>
-                <ArrowUpRight className="size-4 opacity-60 transition-opacity group-hover:opacity-100" />
-              </div>
-            </Panel>
-          </Link>
-
-          <Link to="/clients" className="group">
-            <Panel className="min-h-[4.5rem] bg-sky p-3 transition-transform duration-200 hover:-translate-y-px xl:min-h-0 xl:flex-1">
-              <div className="flex items-center gap-3">
-                <span className="grid size-9 place-items-center rounded-full bg-foreground/10">
-                  <FileText className="size-4" strokeWidth={1.8} />
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm font-bold">Log note</p>
-                  <p className="text-[10px] text-foreground/60">Capture a session insight</p>
-                </div>
-                <ArrowUpRight className="size-4 opacity-60 transition-opacity group-hover:opacity-100" />
-              </div>
-            </Panel>
-          </Link>
-        </section>
+        <div className="flex flex-col gap-3 xl:col-span-4">
+          <QuickActions />
+          <CoachingNudge />
+        </div>
 
         <Panel className="p-4 xl:col-span-4">
           <div className="flex items-center justify-between">
