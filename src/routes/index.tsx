@@ -72,23 +72,41 @@ function Dashboard() {
             </div>
           </Panel>
 
-          <Panel className="min-h-36 bg-leaf p-4">
-            <Eyebrow className="text-foreground/60">Utilisation</Eyebrow>
-            <p className="display mt-3 text-4xl">82%</p>
-            <div className="mt-5 flex items-center gap-2">
-              <Meter value={82} tone="bg-foreground" />
-              <span className="text-[10px] font-bold">75 target</span>
-            </div>
-          </Panel>
+          <Link to="/clients" className="group">
+            <Panel className="min-h-36 bg-leaf p-4 transition-transform duration-200 hover:-translate-y-px">
+              <div className="flex items-start justify-between">
+                <Eyebrow className="text-foreground/60">Quick action</Eyebrow>
+                <ArrowUpRight className="size-4 opacity-60 transition-opacity group-hover:opacity-100" />
+              </div>
+              <div className="mt-5 flex items-center gap-3">
+                <span className="grid size-10 place-items-center rounded-full bg-foreground/10">
+                  <UserPlus className="size-5" strokeWidth={1.8} />
+                </span>
+                <div>
+                  <p className="text-sm font-bold">Add client</p>
+                  <p className="text-[10px] text-foreground/60">Start an intake</p>
+                </div>
+              </div>
+            </Panel>
+          </Link>
 
-          <Panel className="min-h-36 bg-sky p-4">
-            <Eyebrow className="text-foreground/60">Revenue</Eyebrow>
-            <div className="mt-3 flex items-baseline gap-2">
-              <p className="display text-4xl">£18.4k</p>
-              <span className="text-xs font-bold">+7%</span>
-            </div>
-            <Sparkline points={practiceStats.revenueTrend} className="mt-2 text-foreground" />
-          </Panel>
+          <Link to="/clients" className="group">
+            <Panel className="min-h-36 bg-sky p-4 transition-transform duration-200 hover:-translate-y-px">
+              <div className="flex items-start justify-between">
+                <Eyebrow className="text-foreground/60">Quick action</Eyebrow>
+                <ArrowUpRight className="size-4 opacity-60 transition-opacity group-hover:opacity-100" />
+              </div>
+              <div className="mt-5 flex items-center gap-3">
+                <span className="grid size-10 place-items-center rounded-full bg-foreground/10">
+                  <FileText className="size-5" strokeWidth={1.8} />
+                </span>
+                <div>
+                  <p className="text-sm font-bold">Log note</p>
+                  <p className="text-[10px] text-foreground/60">Capture a session insight</p>
+                </div>
+              </div>
+            </Panel>
+          </Link>
         </section>
 
         <Panel className="row-span-2 p-4 xl:col-span-3">
