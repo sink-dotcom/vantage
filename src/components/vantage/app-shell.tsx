@@ -99,16 +99,19 @@ export function AppShell({
               <p className="truncate text-sm text-muted-foreground">{subtitle}</p>
             ) : null}
           </div>
-          <div className="hidden items-center gap-2 rounded-md border border-border bg-card/70 px-3 py-1.5 text-sm text-muted-foreground backdrop-blur-md md:flex">
-            <Search className="size-3.5" />
-            <span className="pr-6">Search clients…</span>
-            <kbd className="rounded border border-border px-1 text-[10px]">⌘K</kbd>
-          </div>
-          {actions ?? (
-            <Button className="surface-accent shadow-lift transition-transform hover:-translate-y-px hover:bg-accent">
-              <Plus className="size-4" /> New session
-            </Button>
-          )}
+          {role === "coach" ? (
+            <div className="hidden items-center gap-2 rounded-md border border-border bg-card/70 px-3 py-1.5 text-sm text-muted-foreground backdrop-blur-md md:flex">
+              <Search className="size-3.5" />
+              <span className="pr-6">Search clients…</span>
+              <kbd className="rounded border border-border px-1 text-[10px]">⌘K</kbd>
+            </div>
+          ) : null}
+          {actions ??
+            (role === "coach" ? (
+              <Button className="surface-accent shadow-lift transition-transform hover:-translate-y-px hover:bg-accent">
+                <Plus className="size-4" /> New session
+              </Button>
+            ) : null)}
           <Button variant="outline" size="icon" aria-label="Notifications" className="bg-card/70 backdrop-blur-md">
             <Bell className="size-4" />
           </Button>
