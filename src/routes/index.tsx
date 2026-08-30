@@ -114,15 +114,15 @@ function Dashboard() {
               </Link>
             </header>
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[680px] text-sm">
+              <table className="w-full min-w-[600px] text-sm">
                 <thead>
                   <tr className="text-left text-[11px] uppercase tracking-wider text-muted-foreground">
                     <th className="px-5 py-2 font-semibold">Client</th>
-                    <th className="px-3 py-2 font-semibold">Focus</th>
+                    <th className="hidden px-3 py-2 font-semibold xl:table-cell">Focus</th>
                     <th className="px-3 py-2 font-semibold">Progress</th>
                     <th className="px-3 py-2 font-semibold">Trend</th>
                     <th className="px-3 py-2 font-semibold">Next</th>
-                    <th className="px-5 py-2 font-semibold">Status</th>
+                    <th className="px-5 py-2 text-right font-semibold">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -143,7 +143,7 @@ function Dashboard() {
                           </span>
                         </Link>
                       </td>
-                      <td className="px-3 py-3 text-xs text-muted-foreground">{c.focus}</td>
+                      <td className="hidden px-3 py-3 text-xs text-muted-foreground xl:table-cell">{c.focus}</td>
                       <td className="px-3 py-3">
                         <div className="flex w-28 items-center gap-2">
                           <Meter
@@ -172,8 +172,8 @@ function Dashboard() {
                           }
                         />
                       </td>
-                      <td className="px-3 py-3 text-xs text-muted-foreground">{c.nextSession}</td>
-                      <td className="px-5 py-3">
+                      <td className="px-3 py-3 text-xs whitespace-nowrap text-muted-foreground">{c.nextSession}</td>
+                      <td className="px-5 py-3 text-right whitespace-nowrap">
                         <StatusPill status={c.status} />
                       </td>
                     </tr>
