@@ -35,6 +35,8 @@ export function AppShell({
   children: React.ReactNode;
 }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const { role, setRole } = useRole();
+  const nav = role === "coachee" ? coacheeNav : coachNav;
 
   return (
     <div className="min-h-screen bg-background lg:flex">
