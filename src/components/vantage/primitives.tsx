@@ -11,13 +11,15 @@ export function Panel({
   children,
   className,
   gradient,
+  id,
 }: {
   children: React.ReactNode;
   className?: string;
   gradient?: boolean;
+  id?: string;
 }) {
   return (
-    <section className={cn(gradient ? "panel-gradient" : "panel", "shadow-panel", className)}>
+    <section id={id} className={cn(gradient ? "panel-gradient" : "panel", "shadow-panel", className)}>
       {children}
     </section>
   );
