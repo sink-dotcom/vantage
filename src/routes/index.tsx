@@ -7,7 +7,6 @@ import {
   MessageSquare,
   Target,
   TrendingUp,
-  UserPlus,
   Users,
 } from "lucide-react";
 
@@ -21,6 +20,8 @@ import {
   Sparkline,
   StatusPill,
 } from "@/components/vantage/primitives";
+import { CoachingNudge } from "@/components/vantage/coaching-nudge";
+import { QuickActions } from "@/components/vantage/quick-actions";
 import { activity, clients, getClient, goals, isRising, practiceStats, sessions } from "@/lib/vantage-data";
 
 export const Route = createFileRoute("/")({
@@ -63,7 +64,7 @@ function Dashboard() {
           <CoachingNudge />
         </div>
 
-        <Panel className="p-4 xl:col-span-4">
+        <Panel id="tour-upnext" className="p-4 xl:col-span-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2"><Clock className="size-4" /><h2 className="text-sm font-bold">Up next</h2></div>
             <Link to="/sessions" aria-label="View all sessions"><ArrowUpRight className="size-4" /></Link>
@@ -87,7 +88,7 @@ function Dashboard() {
           <Link to="/sessions" className="mt-3 flex items-center justify-center rounded-md bg-primary py-2 text-xs font-bold text-primary-foreground">Open calendar</Link>
         </Panel>
 
-        <Panel className="overflow-hidden xl:col-span-8">
+        <Panel id="tour-roster" className="overflow-hidden xl:col-span-8">
           <header className="flex items-center justify-between border-b border-border px-4 py-3">
             <div className="flex items-center gap-2"><Users className="size-4" /><h2 className="text-sm font-bold">Client roster</h2></div>
             <Link to="/clients" className="text-xs font-bold">View all</Link>
