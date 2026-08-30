@@ -46,7 +46,7 @@ function Dashboard() {
   return (
     <AppShell title="Good afternoon, Elena" subtitle="Sunday, 30 August · 3 sessions left · 2 need attention">
       <div className="grid gap-3 xl:grid-cols-12">
-        <Panel className="overflow-hidden bg-secondary xl:col-span-8">
+        <Panel id="tour-progress" className="overflow-hidden bg-card xl:col-span-8">
           <header className="flex items-start justify-between px-5 pt-4">
             <div>
               <Eyebrow className="text-foreground/60">Programme</Eyebrow>
