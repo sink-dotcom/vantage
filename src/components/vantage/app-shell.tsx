@@ -64,10 +64,8 @@ export function AppShell({
         </nav>
 
         <div className="mt-auto hidden rounded-lg border border-sidebar-border bg-sidebar-accent/40 p-3 lg:block">
-          <p className="text-xs font-semibold text-sidebar-accent-foreground">This week</p>
-          <p className="mt-1 text-xs leading-relaxed text-sidebar-muted">
-            7.5 coaching hours booked across 5 clients. Two slots still open on Wednesday.
-          </p>
+          <p className="text-xs font-semibold text-sidebar-accent-foreground">7.5 hours</p>
+          <p className="mt-1 text-xs text-sidebar-muted">5 clients · 2 open slots</p>
         </div>
       </aside>
 

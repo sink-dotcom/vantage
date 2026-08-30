@@ -99,33 +99,33 @@ export function ProgressBubbleMap({ clients }: { clients: Client[] }) {
   const ordered = [...clients].sort((a, b) => a.progress - b.progress);
 
   return (
-    <div className="relative min-h-44" aria-label="Client programme progress map">
-      <div className="absolute inset-x-5 top-[52%] h-px bg-border" />
-      <div className="absolute inset-x-5 top-[52%] flex justify-between text-[10px] font-semibold text-muted-foreground">
-        <span className="mt-3">Starting</span>
-        <span className="mt-3">Midway</span>
-        <span className="mt-3">Completing</span>
+    <div className="relative min-h-48" aria-label="Client programme progress map">
+      <div className="absolute inset-x-4 top-[58%] h-0.5 bg-foreground/15" />
+      <div className="absolute inset-x-4 top-[58%] flex justify-between text-[9px] font-bold uppercase text-foreground/50">
+        <span className="mt-3">Start</span>
+        <span className="mt-3">50%</span>
+        <span className="mt-3">Finish</span>
       </div>
       {ordered.map((client, index) => {
-        const size = 44 + client.progress * 0.3;
-        const verticalOffset = index % 2 === 0 ? -2 : 8;
+        const size = 42 + client.progress * 0.22;
+        const verticalOffset = index % 2 === 0 ? -4 : 12;
         return (
           <Link
             key={client.id}
             to="/clients/$clientId"
             params={{ clientId: client.id }}
-            className="group absolute top-[52%] z-[1] -translate-x-1/2 -translate-y-full"
-            style={{ left: `${8 + client.progress * 0.84}%`, marginTop: `${verticalOffset}px` }}
+            className="group absolute top-[58%] z-[1] -translate-x-1/2 -translate-y-full"
+            style={{ left: `${7 + client.progress * 0.86}%`, marginTop: `${verticalOffset}px` }}
             aria-label={`${client.name}, ${client.progress}% complete`}
           >
             <span
               className={cn(
-                "bubble-node grid place-items-center rounded-full text-[11px] font-bold transition-transform duration-200 group-hover:-translate-y-1 group-hover:scale-105",
+                "bubble-node grid place-items-center rounded-full text-[11px] font-extrabold transition-transform duration-150 group-hover:-translate-y-1",
                 bubbleTone[client.status],
               )}
               style={{ width: `${size}px`, height: `${size}px` }}
             >
-              <span className="text-primary">{client.initials}</span>
+              <span className="text-foreground">{client.initials}</span>
             </span>
             <span className="pointer-events-none absolute left-1/2 top-full mt-2 w-28 -translate-x-1/2 translate-y-1 rounded-md border border-border bg-popover/90 px-2 py-1.5 text-center opacity-0 shadow-lift backdrop-blur-md transition-all group-hover:translate-y-0 group-hover:opacity-100">
               <span className="block text-xs font-bold text-foreground">{client.progress}%</span>

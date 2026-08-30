@@ -7,7 +7,7 @@
 /*
  * Vantage design system.
  *
- * Clear-day canvas, charcoal chrome, mint and yellow accents.
+ * Citrus Studio canvas, ink chrome, pink, yellow and leaf-green accents.
  * Display type: Sora. UI type: Manrope.
  * All values are oklch tokens; never hardcode colors in components.
  */
@@ -51,6 +51,10 @@
   --color-violet: var(--violet);
   --color-ember: var(--ember);
   --color-rose: var(--rose);
+  --color-lemon: var(--lemon);
+  --color-pink: var(--pink);
+  --color-leaf: var(--leaf);
+  --color-sky: var(--sky);
 
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -68,45 +72,49 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --shadow-panel: 0 1px 2px oklch(0.252 0.028 218 / 0.04), 0 12px 32px oklch(0.252 0.028 218 / 0.055);
-  --shadow-lift: 0 10px 26px oklch(0.252 0.028 218 / 0.13);
+  --shadow-panel: 0 1px 0 oklch(0.2 0.01 95 / 0.05);
+  --shadow-lift: 0 5px 0 oklch(0.2 0.01 95 / 0.12);
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.5rem;
 
-  --background: oklch(0.977 0.009 180);
-  --foreground: oklch(0.252 0.028 218);
+  --background: oklch(0.965 0.018 91);
+  --foreground: oklch(0.2 0.01 95);
 
-  --card: oklch(1 0 0 / 62%);
-  --card-foreground: oklch(0.252 0.028 218);
-  --popover: oklch(0.992 0.004 180);
-  --popover-foreground: oklch(0.252 0.028 218);
+  --card: oklch(0.995 0.006 91 / 88%);
+  --card-foreground: oklch(0.2 0.01 95);
+  --popover: oklch(0.99 0.008 91);
+  --popover-foreground: oklch(0.2 0.01 95);
 
-  --primary: oklch(0.252 0.028 218);
-  --primary-foreground: oklch(0.977 0.009 180);
+  --primary: oklch(0.2 0.01 95);
+  --primary-foreground: oklch(0.965 0.018 91);
 
-  --secondary: oklch(0.922 0.035 181);
-  --secondary-foreground: oklch(0.31 0.036 213);
+  --secondary: oklch(0.82 0.09 346);
+  --secondary-foreground: oklch(0.24 0.02 346);
 
-  --muted: oklch(0.943 0.018 181);
-  --muted-foreground: oklch(0.52 0.027 211);
+  --muted: oklch(0.925 0.018 91);
+  --muted-foreground: oklch(0.48 0.018 85);
 
-  --accent: oklch(0.799 0.113 181);
-  --accent-foreground: oklch(0.252 0.028 218);
+  --accent: oklch(0.87 0.16 95);
+  --accent-foreground: oklch(0.2 0.01 95);
 
   --destructive: oklch(0.629 0.186 7.2);
   --destructive-foreground: oklch(0.985 0.008 87.5);
 
-  --border: oklch(0.252 0.028 218 / 13%);
-  --input: oklch(0.252 0.028 218 / 18%);
-  --ring: oklch(0.799 0.113 181);
+  --border: oklch(0.2 0.01 95 / 17%);
+  --input: oklch(0.2 0.01 95 / 22%);
+  --ring: oklch(0.2 0.01 95);
 
-  --success: oklch(0.69 0.13 157);
-  --info: oklch(0.72 0.11 215);
+  --success: oklch(0.66 0.11 128);
+  --info: oklch(0.75 0.09 245);
   --violet: oklch(0.69 0.11 330);
-  --ember: oklch(0.869 0.127 94);
+  --ember: oklch(0.76 0.15 82);
   --rose: oklch(0.65 0.18 20);
+  --lemon: oklch(0.87 0.16 95);
+  --pink: oklch(0.82 0.09 346);
+  --leaf: oklch(0.72 0.11 128);
+  --sky: oklch(0.78 0.08 245);
 
   --chart-1: oklch(0.799 0.113 181);
   --chart-2: oklch(0.678 0.127 148.2);
@@ -114,28 +122,18 @@
   --chart-4: oklch(0.626 0.155 302.8);
   --chart-5: oklch(0.66 0.182 46.1);
 
-  --sidebar: oklch(0.252 0.028 218);
-  --sidebar-foreground: oklch(0.95 0.015 180);
-  --sidebar-primary: oklch(0.799 0.113 181);
-  --sidebar-primary-foreground: oklch(0.252 0.028 218);
-  --sidebar-accent: oklch(0.32 0.033 216);
-  --sidebar-accent-foreground: oklch(0.97 0.01 180);
-  --sidebar-muted: oklch(0.72 0.025 190);
+  --sidebar: oklch(0.2 0.01 95);
+  --sidebar-foreground: oklch(0.97 0.015 91);
+  --sidebar-primary: oklch(0.87 0.16 95);
+  --sidebar-primary-foreground: oklch(0.2 0.01 95);
+  --sidebar-accent: oklch(0.27 0.01 95);
+  --sidebar-accent-foreground: oklch(0.98 0.01 91);
+  --sidebar-muted: oklch(0.72 0.015 91);
   --sidebar-border: oklch(1 0 0 / 8%);
   --sidebar-ring: oklch(0.799 0.113 181);
 
-  /* Surfaces & gradients */
-  --gradient-panel: radial-gradient(
-    135% 130% at 82% -10%,
-     oklch(1 0 0 / 0.72) 0%,
-     oklch(0.94 0.05 181 / 0.28) 46%,
-     oklch(1 0 0 / 0.16) 100%
-  );
-  --gradient-accent: linear-gradient(
-    135deg,
-    oklch(0.86 0.1 180) 0%,
-    oklch(0.799 0.113 181) 100%
-  );
+  --gradient-panel: oklch(0.995 0.006 91 / 88%);
+  --gradient-accent: var(--lemon);
 }
 
 .dark {
@@ -213,8 +211,8 @@
 @utility panel {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
-  background: oklch(1 0 0 / 0.62);
-  backdrop-filter: blur(18px) saturate(125%);
+  background: var(--color-card);
+  backdrop-filter: blur(10px);
 }
 
 @utility panel-gradient {
@@ -222,7 +220,7 @@
   border-radius: var(--radius-xl);
   background: var(--gradient-panel);
   overflow: hidden;
-  backdrop-filter: blur(18px) saturate(125%);
+  backdrop-filter: blur(10px);
 }
 
 /* Small uppercase section label */
@@ -240,11 +238,6 @@
 }
 
 @utility bubble-node {
-  background: radial-gradient(
-    circle at 34% 28%,
-    color-mix(in oklab, oklch(1 0 0) 58%, currentColor) 0%,
-    currentColor 44%,
-    color-mix(in oklab, currentColor 0%, transparent) 76%
-  );
-  filter: drop-shadow(0 8px 12px color-mix(in oklab, currentColor 22%, transparent));
+  background: color-mix(in oklab, currentColor 72%, var(--color-card));
+  border: 2px solid color-mix(in oklab, currentColor 72%, var(--color-foreground));
 }
