@@ -56,7 +56,7 @@ function Dashboard() {
             </div>
             <Link to="/clients" aria-label="Explore clients"><ArrowUpRight className="size-4" /></Link>
           </header>
-          <div className="px-4 pb-1"><ProgressBubbleMap clients={clients} /></div>
+          <div className="flex flex-1 items-center px-4 pb-2 pt-2"><div className="w-full"><ProgressBubbleMap clients={clients} /></div></div>
         </Panel>
 
         <div className="flex flex-col gap-3 xl:col-span-4">
