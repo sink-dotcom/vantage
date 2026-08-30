@@ -17,6 +17,7 @@ import {
   Initials,
   Meter,
   Panel,
+  ProgressBubbleMap,
   Sparkline,
   StatTile,
   StatusPill,
@@ -101,6 +102,37 @@ function Dashboard() {
               <Sparkline points={practiceStats.revenueTrend} className="text-success" />
             </StatTile>
           </Panel>
+
+          <div className="grid gap-4 md:grid-cols-[minmax(0,1.45fr)_minmax(240px,.55fr)]">
+            <Panel gradient className="min-h-64 p-5">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <Eyebrow>Programme overview</Eyebrow>
+                  <h2 className="mt-1 text-base font-semibold">Progress map</h2>
+                </div>
+                <Link
+                  to="/clients"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-muted-foreground hover:text-foreground"
+                >
+                  Explore clients <ArrowUpRight className="size-3.5" />
+                </Link>
+              </div>
+              <ProgressBubbleMap clients={clients} />
+            </Panel>
+
+            <Panel className="grid min-h-64 grid-cols-2 divide-x divide-y divide-border overflow-hidden md:grid-cols-1 md:divide-x-0">
+              <div className="p-4">
+                <Eyebrow>Momentum</Eyebrow>
+                <p className="mt-2 text-2xl font-bold tabular-nums text-success">+12%</p>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">Average client progress this month</p>
+              </div>
+              <div className="p-4">
+                <Eyebrow>Completing soon</Eyebrow>
+                <p className="mt-2 text-2xl font-bold tabular-nums">2</p>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">Clients above 75% programme progress</p>
+              </div>
+            </Panel>
+          </div>
 
           {/* Client roster */}
           <Panel className="overflow-hidden">
