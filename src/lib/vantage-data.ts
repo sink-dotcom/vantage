@@ -275,3 +275,7 @@ export const practiceStats = {
     { day: "Sun", hours: 0 },
   ],
 };
+
+export function isRising(points: number[]) {
+  return (points.at(-1) ?? 0) >= (points[0] ?? 0);
+}

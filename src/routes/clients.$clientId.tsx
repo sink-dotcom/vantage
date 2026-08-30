@@ -3,7 +3,7 @@ import { ArrowLeft, Check, Circle } from "lucide-react";
 
 import { AppShell } from "@/components/vantage/app-shell";
 import { Eyebrow, Initials, Meter, Panel, Sparkline, StatusPill } from "@/components/vantage/primitives";
-import { activity, getClient, goals, sessions } from "@/lib/vantage-data";
+import { activity, getClient, goals, isRising, sessions } from "@/lib/vantage-data";
 
 export const Route = createFileRoute("/clients/$clientId")({
   loader: ({ params }) => {
@@ -70,7 +70,7 @@ function ClientDetail() {
               <Eyebrow>Engagement</Eyebrow>
               <Sparkline
                 points={client.engagementTrend}
-                className={client.engagementTrend[6] >= client.engagementTrend[0] ? "text-success" : "text-rose"}
+                className={isRising(client.engagementTrend) ? "text-success" : "text-rose"}
               />
             </div>
             <StatusPill status={client.status} />

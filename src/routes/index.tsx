@@ -24,6 +24,7 @@ import {
 import {
   activity,
   clients,
+  isRising,
   getClient,
   goals,
   practiceStats,
@@ -167,7 +168,7 @@ function Dashboard() {
                         <Sparkline
                           points={c.engagementTrend}
                           className={
-                            c.engagementTrend[6] >= c.engagementTrend[0] ? "text-success" : "text-rose"
+                            isRising(c.engagementTrend) ? "text-success" : "text-rose"
                           }
                         />
                       </td>

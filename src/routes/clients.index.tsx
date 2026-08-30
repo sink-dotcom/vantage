@@ -2,7 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 
 import { AppShell } from "@/components/vantage/app-shell";
 import { Initials, Meter, Panel, Sparkline, StatusPill } from "@/components/vantage/primitives";
-import { clients } from "@/lib/vantage-data";
+import { clients, isRising } from "@/lib/vantage-data";
 
 export const Route = createFileRoute("/clients/")({
   head: () => ({
@@ -69,7 +69,7 @@ function ClientsPage() {
 
             <Sparkline
               points={c.engagementTrend}
-              className={c.engagementTrend[6] >= c.engagementTrend[0] ? "text-success" : "text-rose"}
+              className={isRising(c.engagementTrend) ? "text-success" : "text-rose"}
             />
 
             <p className="line-clamp-2 text-xs leading-relaxed text-muted-foreground">{c.lastNote}</p>
