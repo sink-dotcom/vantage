@@ -242,7 +242,7 @@
 @utility bubble-node {
   background: radial-gradient(
     circle at 34% 28%,
-    color-mix(in oklab, white 58%, currentColor) 0%,
+    color-mix(in oklab, oklch(1 0 0) 58%, currentColor) 0%,
     currentColor 44%,
     color-mix(in oklab, currentColor 0%, transparent) 76%
   );

@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 import { cn } from "@/lib/utils";
 import { statusClass, statusLabel, type Client, type Status } from "@/lib/vantage-data";
 
@@ -118,7 +120,7 @@ export function ProgressBubbleMap({ clients }: { clients: Client[] }) {
           >
             <span
               className={cn(
-                "bubble-node grid place-items-center rounded-full text-[11px] font-bold text-primary transition-transform duration-200 group-hover:-translate-y-1 group-hover:scale-105",
+                "bubble-node grid place-items-center rounded-full text-[11px] font-bold transition-transform duration-200 group-hover:-translate-y-1 group-hover:scale-105",
                 bubbleTone[client.status],
               )}
               style={{ width: `${size}px`, height: `${size}px` }}
