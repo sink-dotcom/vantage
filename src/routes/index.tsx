@@ -17,12 +17,11 @@ import {
   Meter,
   Panel,
   ProgressBubbleMap,
-  Sparkline,
   StatusPill,
 } from "@/components/vantage/primitives";
 import { CoachingNudge } from "@/components/vantage/coaching-nudge";
 import { QuickActions } from "@/components/vantage/quick-actions";
-import { activity, clients, getClient, goals, isRising, practiceStats, sessions } from "@/lib/vantage-data";
+import { activity, clients, getClient, goals, practiceStats, sessions } from "@/lib/vantage-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -95,13 +94,12 @@ function Dashboard() {
           </header>
           <div className="grid divide-y divide-border md:grid-cols-2 md:divide-x md:divide-y-0">
             {clients.map((client) => (
-              <Link key={client.id} to="/clients/$clientId" params={{ clientId: client.id }} className="grid grid-cols-[auto_1fr_auto] items-center gap-3 border-b border-border/70 px-4 py-2.5 transition-colors hover:bg-muted/60 md:[&:nth-last-child(-n+2)]:border-b-0">
+              <Link key={client.id} to="/clients/$clientId" params={{ clientId: client.id }} className="grid grid-cols-[auto_1fr] items-center gap-3 border-b border-border/70 px-4 py-2.5 transition-colors hover:bg-muted/60 md:[&:nth-last-child(-n+2)]:border-b-0">
                 <Initials text={client.initials} className="size-8" />
                 <div className="min-w-0">
                   <div className="flex items-baseline justify-between gap-2"><p className="truncate text-xs font-bold">{client.name}</p><span className="text-[10px] font-semibold">{client.progress}%</span></div>
                   <Meter value={client.progress} className="mt-1.5" tone={client.status === "on-track" ? "bg-success" : client.status === "at-risk" ? "bg-ember" : client.status === "stalled" ? "bg-rose" : "bg-info"} />
                 </div>
-                <Sparkline points={client.engagementTrend} className={`w-12 ${isRising(client.engagementTrend) ? "text-success" : "text-rose"}`} />
               </Link>
             ))}
           </div>
