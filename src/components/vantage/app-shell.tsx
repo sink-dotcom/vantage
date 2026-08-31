@@ -11,10 +11,12 @@ import {
   PanelLeftOpen,
   Search,
   Sprout,
+  Sun,
   Target,
   Users,
   Plus,
   Bell,
+  Moon,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -64,10 +66,20 @@ export function AppShell({
   const { role, setRole } = useRole();
   const nav = role === "coachee" ? coacheeNav : coachNav;
   const [collapsed, setCollapsed] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
     const stored = localStorage.getItem("vantage-sidebar");
     if (stored === "collapsed") setCollapsed(true);
+
+    const storedTheme = localStorage.getItem("vantage-theme");
+    const nextTheme = storedTheme === "dark" || storedTheme === "light"
+      ? storedTheme
+      : window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    setTheme(nextTheme);
+    document.documentElement.classList.toggle("dark", nextTheme === "dark");
   }, []);
 
   const toggle = () => {
@@ -77,20 +89,27 @@ export function AppShell({
     });
   };
 
+  const toggleTheme = () => {
+    setTheme((current) => {
+      const nextTheme = current === "dark" ? "light" : "dark";
+      localStorage.setItem("vantage-theme", nextTheme);
+      document.documentElement.classList.toggle("dark", nextTheme === "dark");
+      return nextTheme;
+    });
+  };
+
   return (
     <div className="min-h-screen bg-background lg:flex">
       <aside
         className={cn(
           "sticky top-0 z-20 flex h-auto shrink-0 flex-col gap-5 bg-sidebar px-3 py-4 text-sidebar-foreground transition-[width] duration-200 lg:h-screen lg:py-6",
-          collapsed ? "lg:w-[68px]" : "lg:w-56",
+          collapsed ? "lg:w-[86px]" : "lg:w-56",
         )}
       >
         <div className={cn("flex items-center gap-2", collapsed ? "lg:justify-center" : "px-1")}>
-          <Link to="/" className="flex min-w-0 items-center gap-2">
-            <span className="surface-accent flex size-8 shrink-0 items-center justify-center rounded-md text-sm font-bold">
-              V
-            </span>
-            {!collapsed ? <span className="display truncate text-xl">Vantage</span> : null}
+          <Link to="/" aria-label="Vantage home" className="display min-w-0 whitespace-nowrap text-xl text-sidebar-foreground">
+            <span className={cn(collapsed && "lg:text-sm")}>Vantage</span>
+            <span className="text-sidebar-primary">.</span>
           </Link>
           <button
             type="button"
@@ -188,6 +207,16 @@ export function AppShell({
                 <Plus className="size-4" /> New session
               </Button>
             ) : null)}
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            title={theme === "dark" ? "Light mode" : "Dark mode"}
+            className="bg-card/70 backdrop-blur-md"
+          >
+            {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+          </Button>
           <Button variant="outline" size="icon" aria-label="Notifications" className="bg-card/70 backdrop-blur-md">
             <Bell className="size-4" />
           </Button>
