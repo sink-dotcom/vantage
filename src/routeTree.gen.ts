@@ -16,6 +16,7 @@ import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as GoalsRouteImport } from './routes/goals'
 import { Route as IntakeRouteImport } from './routes/intake'
 import { Route as LogsRouteImport } from './routes/logs'
+import { Route as PlaybookRouteImport } from './routes/playbook'
 import { Route as SessionsRouteImport } from './routes/sessions'
 import { Route as ClientsIndexRouteImport } from './routes/clients.index'
 import { Route as ClientsClientIdRouteImport } from './routes/clients.$clientId'
@@ -55,6 +56,11 @@ const LogsRoute = LogsRouteImport.update({
   path: '/logs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlaybookRoute = PlaybookRouteImport.update({
+  id: '/playbook',
+  path: '/playbook',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SessionsRoute = SessionsRouteImport.update({
   id: '/sessions',
   path: '/sessions',
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/goals': typeof GoalsRoute
   '/intake': typeof IntakeRoute
   '/logs': typeof LogsRoute
+  '/playbook': typeof PlaybookRoute
   '/sessions': typeof SessionsRoute
   '/clients/$clientId': typeof ClientsClientIdRoute
   '/clients/': typeof ClientsIndexRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByTo {
   '/goals': typeof GoalsRoute
   '/intake': typeof IntakeRoute
   '/logs': typeof LogsRoute
+  '/playbook': typeof PlaybookRoute
   '/sessions': typeof SessionsRoute
   '/clients/$clientId': typeof ClientsClientIdRoute
   '/clients': typeof ClientsIndexRoute
@@ -103,6 +111,7 @@ export interface FileRoutesById {
   '/goals': typeof GoalsRoute
   '/intake': typeof IntakeRoute
   '/logs': typeof LogsRoute
+  '/playbook': typeof PlaybookRoute
   '/sessions': typeof SessionsRoute
   '/clients/$clientId': typeof ClientsClientIdRoute
   '/clients/': typeof ClientsIndexRoute
@@ -117,6 +126,7 @@ export interface FileRouteTypes {
     | '/goals'
     | '/intake'
     | '/logs'
+    | '/playbook'
     | '/sessions'
     | '/clients/$clientId'
     | '/clients/'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/goals'
     | '/intake'
     | '/logs'
+    | '/playbook'
     | '/sessions'
     | '/clients/$clientId'
     | '/clients'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/goals'
     | '/intake'
     | '/logs'
+    | '/playbook'
     | '/sessions'
     | '/clients/$clientId'
     | '/clients/'
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   GoalsRoute: typeof GoalsRoute
   IntakeRoute: typeof IntakeRoute
   LogsRoute: typeof LogsRoute
+  PlaybookRoute: typeof PlaybookRoute
   SessionsRoute: typeof SessionsRoute
 }
 
@@ -207,6 +220,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LogsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/playbook': {
+      id: '/playbook'
+      path: '/playbook'
+      fullPath: '/playbook'
+      preLoaderRoute: typeof PlaybookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sessions': {
       id: '/sessions'
       path: '/sessions'
@@ -252,6 +272,7 @@ const rootRouteChildren: RootRouteChildren = {
   GoalsRoute: GoalsRoute,
   IntakeRoute: IntakeRoute,
   LogsRoute: LogsRoute,
+  PlaybookRoute: PlaybookRoute,
   SessionsRoute: SessionsRoute,
 }
 export const routeTree = rootRouteImport
