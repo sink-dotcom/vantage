@@ -90,13 +90,6 @@ export function Sparkline({
   );
 }
 
-const bubbleTone: Record<Status, string> = {
-  "on-track": "text-success",
-  "at-risk": "text-ember",
-  stalled: "text-rose",
-  new: "text-info",
-};
-
 const bubbleRing: Record<Status, string> = {
   "on-track": "stroke-success",
   "at-risk": "stroke-ember",
