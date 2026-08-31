@@ -46,8 +46,8 @@ function Dashboard() {
 
   return (
     <AppShell title="Good afternoon, Elena" subtitle="Sunday, 30 August · 3 sessions left · 2 need attention">
-      <div className="grid gap-3 xl:grid-cols-12">
-        <Panel id="tour-progress" className="flex flex-col overflow-hidden bg-card xl:col-span-8">
+      <div className="grid gap-3 lg:grid-cols-12">
+        <Panel id="tour-progress" className="flex flex-col overflow-hidden bg-card lg:col-span-8">
           <header className="flex items-start justify-between px-5 pt-4">
             <div>
               <Eyebrow className="text-foreground/60">Programme</Eyebrow>
@@ -59,12 +59,12 @@ function Dashboard() {
           <div className="flex flex-1 items-center px-4 pb-2 pt-2"><div className="w-full"><ProgressBubbleMap clients={clients} /></div></div>
         </Panel>
 
-        <div className="flex flex-col gap-3 xl:col-span-4">
+        <div className="flex flex-col gap-3 lg:col-span-4">
           <QuickActions />
           <CoachingNudge />
         </div>
 
-        <Panel id="tour-upnext" className="p-4 xl:col-span-4">
+        <Panel id="tour-upnext" className="p-4 lg:col-span-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2"><Clock className="size-4" /><h2 className="text-sm font-bold">Up next</h2></div>
             <Link to="/sessions" aria-label="View all sessions"><ArrowUpRight className="size-4" /></Link>
@@ -88,7 +88,7 @@ function Dashboard() {
           <Link to="/sessions" className="mt-3 flex items-center justify-center rounded-md bg-primary py-2 text-xs font-bold text-primary-foreground">Open calendar</Link>
         </Panel>
 
-        <Panel id="tour-roster" className="overflow-hidden xl:col-span-8">
+        <Panel id="tour-roster" className="overflow-hidden lg:col-span-8">
           <header className="flex items-center justify-between border-b border-border px-4 py-3">
             <div className="flex items-center gap-2"><Users className="size-4" /><h2 className="text-sm font-bold">Client roster</h2></div>
             <Link to="/clients" className="text-xs font-bold">View all</Link>
@@ -107,7 +107,7 @@ function Dashboard() {
           </div>
         </Panel>
 
-        <Panel className="p-4 xl:col-span-3">
+        <Panel className="p-4 lg:col-span-3">
           <Eyebrow>Activity</Eyebrow>
           <ul className="mt-3 space-y-3">
             {activity.slice(0, 5).map((item) => {
@@ -119,14 +119,14 @@ function Dashboard() {
           </ul>
         </Panel>
 
-        <Panel className="p-4 xl:col-span-5">
+        <Panel className="p-4 lg:col-span-5">
           <div className="flex items-center justify-between"><div className="flex items-center gap-2"><Target className="size-4" /><h2 className="text-sm font-bold">Goal momentum</h2></div><Link to="/goals"><ArrowUpRight className="size-4" /></Link></div>
           <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-3">
             {goals.slice(0, 4).map((goal) => <div key={goal.id}><div className="flex justify-between gap-2 text-[10px] font-semibold"><span className="truncate">{goal.title}</span><span>{goal.progress}%</span></div><Meter value={goal.progress} className="mt-1.5" tone={goal.status === "on-track" ? "bg-success" : goal.status === "at-risk" ? "bg-ember" : "bg-rose"} /></div>)}
           </div>
         </Panel>
 
-        <Panel className="bg-lemon/55 p-4 xl:col-span-4">
+        <Panel className="bg-lemon/55 p-4 lg:col-span-4">
           <div className="flex items-center gap-2"><TrendingUp className="size-4" /><h2 className="text-sm font-bold">Needs attention</h2></div>
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
             {attention.map((client) => <Link key={client.id} to="/clients/$clientId" params={{ clientId: client.id }} className="rounded-md border border-foreground/15 bg-card/55 p-2.5"><div className="flex items-center justify-between gap-2"><p className="text-xs font-bold">{client.name}</p><StatusPill status={client.status} /></div><p className="mt-2 text-[10px] font-semibold text-muted-foreground">{client.nextSession}</p></Link>)}
