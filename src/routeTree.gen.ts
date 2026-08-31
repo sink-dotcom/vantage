@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ClientsRouteImport } from './routes/clients'
 import { Route as CoacheeRouteImport } from './routes/coachee'
+import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as GoalsRouteImport } from './routes/goals'
 import { Route as SessionsRouteImport } from './routes/sessions'
 import { Route as ClientsIndexRouteImport } from './routes/clients.index'
@@ -30,6 +31,11 @@ const ClientsRoute = ClientsRouteImport.update({
 const CoacheeRoute = CoacheeRouteImport.update({
   id: '/coachee',
   path: '/coachee',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeedbackRoute = FeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GoalsRoute = GoalsRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/clients': typeof ClientsRouteWithChildren
   '/coachee': typeof CoacheeRoute
+  '/feedback': typeof FeedbackRoute
   '/goals': typeof GoalsRoute
   '/sessions': typeof SessionsRoute
   '/clients/$clientId': typeof ClientsClientIdRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/coachee': typeof CoacheeRoute
+  '/feedback': typeof FeedbackRoute
   '/goals': typeof GoalsRoute
   '/sessions': typeof SessionsRoute
   '/clients/$clientId': typeof ClientsClientIdRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/clients': typeof ClientsRouteWithChildren
   '/coachee': typeof CoacheeRoute
+  '/feedback': typeof FeedbackRoute
   '/goals': typeof GoalsRoute
   '/sessions': typeof SessionsRoute
   '/clients/$clientId': typeof ClientsClientIdRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
     | '/'
     | '/clients'
     | '/coachee'
+    | '/feedback'
     | '/goals'
     | '/sessions'
     | '/clients/$clientId'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/coachee'
+    | '/feedback'
     | '/goals'
     | '/sessions'
     | '/clients/$clientId'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/clients'
     | '/coachee'
+    | '/feedback'
     | '/goals'
     | '/sessions'
     | '/clients/$clientId'
@@ -113,6 +125,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ClientsRoute: typeof ClientsRouteWithChildren
   CoacheeRoute: typeof CoacheeRoute
+  FeedbackRoute: typeof FeedbackRoute
   GoalsRoute: typeof GoalsRoute
   SessionsRoute: typeof SessionsRoute
 }
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       path: '/coachee'
       fullPath: '/coachee'
       preLoaderRoute: typeof CoacheeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feedback': {
+      id: '/feedback'
+      path: '/feedback'
+      fullPath: '/feedback'
+      preLoaderRoute: typeof FeedbackRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/goals': {
@@ -188,6 +208,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ClientsRoute: ClientsRouteWithChildren,
   CoacheeRoute: CoacheeRoute,
+  FeedbackRoute: FeedbackRoute,
   GoalsRoute: GoalsRoute,
   SessionsRoute: SessionsRoute,
 }
