@@ -279,3 +279,174 @@ export const practiceStats = {
 export function isRising(points: number[]) {
   return (points.at(-1) ?? 0) >= (points[0] ?? 0);
 }
+
+/* ---------- 360 feedback ---------- */
+
+export type FeedbackCycle = {
+  id: string;
+  clientId: string;
+  title: string;
+  window: string;
+  invited: number;
+  responded: number;
+  state: "collecting" | "review" | "shared";
+  themes: { label: string; score: number; delta: number }[];
+};
+
+export const feedbackCycles: FeedbackCycle[] = [
+  {
+    id: "f1",
+    clientId: "maya-okonkwo",
+    title: "Mid-programme 360",
+    window: "Closes in 4 days",
+    invited: 9,
+    responded: 7,
+    state: "collecting",
+    themes: [
+      { label: "Clarity of direction", score: 82, delta: 11 },
+      { label: "Executive presence", score: 74, delta: 16 },
+      { label: "Listening", score: 68, delta: 3 },
+    ],
+  },
+  {
+    id: "f2",
+    clientId: "daniel-reyes",
+    title: "Baseline 360",
+    window: "Closed 2 Aug",
+    invited: 8,
+    responded: 8,
+    state: "review",
+    themes: [
+      { label: "Delegation", score: 41, delta: -6 },
+      { label: "Responsiveness", score: 88, delta: 2 },
+      { label: "Strategic focus", score: 55, delta: 4 },
+    ],
+  },
+  {
+    id: "f3",
+    clientId: "aisha-benali",
+    title: "Closing 360",
+    window: "Shared 18 Aug",
+    invited: 10,
+    responded: 9,
+    state: "shared",
+    themes: [
+      { label: "Influence", score: 91, delta: 22 },
+      { label: "Craft leadership", score: 87, delta: 14 },
+      { label: "Boundary setting", score: 79, delta: 18 },
+    ],
+  },
+];
+
+/* ---------- Intake pipeline ---------- */
+
+export type IntakeStage = "enquiry" | "chemistry" | "contracting" | "onboarding";
+
+export type IntakeRecord = {
+  id: string;
+  name: string;
+  initials: string;
+  role: string;
+  company: string;
+  stage: IntakeStage;
+  owner: string;
+  waiting: string;
+  next: string;
+};
+
+export const intakeStages: { key: IntakeStage; label: string }[] = [
+  { key: "enquiry", label: "Enquiry" },
+  { key: "chemistry", label: "Chemistry call" },
+  { key: "contracting", label: "Contracting" },
+  { key: "onboarding", label: "Onboarding" },
+];
+
+export const intake: IntakeRecord[] = [
+  { id: "i1", name: "Lena Fischer", initials: "LF", role: "COO", company: "Halden", stage: "enquiry", owner: "Elena", waiting: "2d", next: "Send intro pack" },
+  { id: "i2", name: "Rui Alves", initials: "RA", role: "Head of Eng", company: "Trellis", stage: "enquiry", owner: "Elena", waiting: "5d", next: "Qualify budget" },
+  { id: "i3", name: "Sofia Marchetti", initials: "SM", role: "CMO", company: "Verado", stage: "chemistry", owner: "Elena", waiting: "1d", next: "Call Wed 11:00" },
+  { id: "i4", name: "Jonah Pike", initials: "JP", role: "VP Sales", company: "Nordhall", stage: "contracting", owner: "Elena", waiting: "3d", next: "Sponsor sign-off" },
+  { id: "i5", name: "Grant Whitmore", initials: "GW", role: "Director", company: "Ashcroft", stage: "onboarding", owner: "Elena", waiting: "1d", next: "Baseline debrief Mon" },
+  { id: "i6", name: "Amara Diallo", initials: "AD", role: "GM", company: "Lumen", stage: "onboarding", owner: "Elena", waiting: "4d", next: "Goal-setting workshop" },
+];
+
+/* ---------- Session logs ---------- */
+
+export type LogEntry = {
+  id: string;
+  clientId: string;
+  title: string;
+  date: string;
+  duration: string;
+  mode: "Video" | "In person" | "Call";
+  summary: string;
+  actions: string[];
+  mood: "energised" | "steady" | "strained";
+};
+
+export const logs: LogEntry[] = [
+  {
+    id: "l1",
+    clientId: "maya-okonkwo",
+    title: "Stakeholder mapping",
+    date: "28 Aug",
+    duration: "60m",
+    mode: "Video",
+    summary: "Mapped nine board stakeholders to three narrative outcomes. Maya led the reframe unprompted.",
+    actions: ["Draft board memo", "Dry run with CFO"],
+    mood: "energised",
+  },
+  {
+    id: "l2",
+    clientId: "priya-nair",
+    title: "Conflict patterns",
+    date: "27 Aug",
+    duration: "50m",
+    mode: "Video",
+    summary: "Surfaced avoidance loop with two direct reports. Agreed a scripted opener for hard conversations.",
+    actions: ["Run first review", "Log reaction notes"],
+    mood: "steady",
+  },
+  {
+    id: "l3",
+    clientId: "daniel-reyes",
+    title: "Calendar audit",
+    date: "26 Aug",
+    duration: "50m",
+    mode: "Call",
+    summary: "62% of the week sits in reactive support calls. Handover trial designed but not yet started.",
+    actions: ["Publish handover plan", "Block two deep-work mornings"],
+    mood: "strained",
+  },
+  {
+    id: "l4",
+    clientId: "aisha-benali",
+    title: "Sustain planning",
+    date: "22 Aug",
+    duration: "60m",
+    mode: "In person",
+    summary: "Council charter published. Focus shifting to what holds after the engagement ends.",
+    actions: ["Name a council chair"],
+    mood: "energised",
+  },
+];
+
+/* ---------- Playbook ---------- */
+
+export type PlaybookItem = {
+  id: string;
+  title: string;
+  kind: "Exercise" | "Framework" | "Assessment" | "Template";
+  duration: string;
+  useCase: string;
+  used: number;
+};
+
+export const playbook: PlaybookItem[] = [
+  { id: "p1", title: "Three-outcome narrative", kind: "Framework", duration: "30m", useCase: "Executive presence", used: 14 },
+  { id: "p2", title: "Calendar reality audit", kind: "Exercise", duration: "45m", useCase: "Delegation & focus", used: 11 },
+  { id: "p3", title: "Hard conversation opener", kind: "Template", duration: "15m", useCase: "Difficult feedback", used: 9 },
+  { id: "p4", title: "Stakeholder heat map", kind: "Exercise", duration: "40m", useCase: "Influence", used: 8 },
+  { id: "p5", title: "Values ladder", kind: "Assessment", duration: "25m", useCase: "Intake & baseline", used: 17 },
+  { id: "p6", title: "Sustain plan canvas", kind: "Template", duration: "35m", useCase: "Closing engagements", used: 6 },
+];
