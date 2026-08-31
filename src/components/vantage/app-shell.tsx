@@ -106,7 +106,7 @@ export function AppShell({
           collapsed ? "lg:w-[86px]" : "lg:w-56",
         )}
       >
-        <div className={cn("flex items-center gap-2", collapsed ? "lg:justify-center" : "px-1")}>
+        <div className={cn("flex items-center gap-2", collapsed ? "lg:flex-col lg:justify-center" : "px-1")}>
           <Link to="/" aria-label="Vantage home" className="display min-w-0 whitespace-nowrap text-xl text-sidebar-foreground">
             <span className={cn(collapsed && "lg:text-sm")}>Vantage</span>
             <span className="text-sidebar-primary">.</span>
@@ -115,7 +115,10 @@ export function AppShell({
             type="button"
             onClick={toggle}
             aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-            className="ml-auto hidden rounded-md p-1.5 text-sidebar-muted transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground lg:block"
+            className={cn(
+              "ml-auto hidden rounded-md p-1.5 text-sidebar-muted transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground lg:block",
+              collapsed && "lg:mx-auto",
+            )}
           >
             {collapsed ? <PanelLeftOpen className="size-4" /> : <PanelLeftClose className="size-4" />}
           </button>
