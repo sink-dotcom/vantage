@@ -17,12 +17,11 @@ import {
   Meter,
   Panel,
   ProgressBubbleMap,
-  Sparkline,
   StatusPill,
 } from "@/components/vantage/primitives";
 import { CoachingNudge } from "@/components/vantage/coaching-nudge";
 import { QuickActions } from "@/components/vantage/quick-actions";
-import { activity, clients, getClient, goals, isRising, practiceStats, sessions } from "@/lib/vantage-data";
+import { activity, clients, getClient, goals, practiceStats, sessions } from "@/lib/vantage-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
