@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ClientsRouteImport } from './routes/clients'
 import { Route as CoacheeRouteImport } from './routes/coachee'
+import { Route as ComponentsRouteImport } from './routes/components'
 import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as GoalsRouteImport } from './routes/goals'
 import { Route as IntakeRouteImport } from './routes/intake'
@@ -34,6 +35,11 @@ const ClientsRoute = ClientsRouteImport.update({
 const CoacheeRoute = CoacheeRouteImport.update({
   id: '/coachee',
   path: '/coachee',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsRoute = ComponentsRouteImport.update({
+  id: '/components',
+  path: '/components',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FeedbackRoute = FeedbackRouteImport.update({
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/clients': typeof ClientsRouteWithChildren
   '/coachee': typeof CoacheeRoute
+  '/components': typeof ComponentsRoute
   '/feedback': typeof FeedbackRoute
   '/goals': typeof GoalsRoute
   '/intake': typeof IntakeRoute
@@ -93,6 +100,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/coachee': typeof CoacheeRoute
+  '/components': typeof ComponentsRoute
   '/feedback': typeof FeedbackRoute
   '/goals': typeof GoalsRoute
   '/intake': typeof IntakeRoute
@@ -107,6 +115,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/clients': typeof ClientsRouteWithChildren
   '/coachee': typeof CoacheeRoute
+  '/components': typeof ComponentsRoute
   '/feedback': typeof FeedbackRoute
   '/goals': typeof GoalsRoute
   '/intake': typeof IntakeRoute
@@ -122,6 +131,7 @@ export interface FileRouteTypes {
     | '/'
     | '/clients'
     | '/coachee'
+    | '/components'
     | '/feedback'
     | '/goals'
     | '/intake'
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/coachee'
+    | '/components'
     | '/feedback'
     | '/goals'
     | '/intake'
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
     | '/'
     | '/clients'
     | '/coachee'
+    | '/components'
     | '/feedback'
     | '/goals'
     | '/intake'
@@ -161,6 +173,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ClientsRoute: typeof ClientsRouteWithChildren
   CoacheeRoute: typeof CoacheeRoute
+  ComponentsRoute: typeof ComponentsRoute
   FeedbackRoute: typeof FeedbackRoute
   GoalsRoute: typeof GoalsRoute
   IntakeRoute: typeof IntakeRoute
@@ -190,6 +203,13 @@ declare module '@tanstack/react-router' {
       path: '/coachee'
       fullPath: '/coachee'
       preLoaderRoute: typeof CoacheeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components': {
+      id: '/components'
+      path: '/components'
+      fullPath: '/components'
+      preLoaderRoute: typeof ComponentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/feedback': {
@@ -268,6 +288,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ClientsRoute: ClientsRouteWithChildren,
   CoacheeRoute: CoacheeRoute,
+  ComponentsRoute: ComponentsRoute,
   FeedbackRoute: FeedbackRoute,
   GoalsRoute: GoalsRoute,
   IntakeRoute: IntakeRoute,
